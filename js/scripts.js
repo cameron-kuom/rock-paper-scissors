@@ -1,3 +1,9 @@
+function capitalizeFirstLetter(string){
+    string = string.charAt(0).toUpperCase() + string.slice(1)
+    return string
+}
+
+
 function getComputerChoice(){
     let randomResult = Math.ceil(Math.random()*9)
     if (randomResult <= 3){
@@ -10,17 +16,17 @@ function getComputerChoice(){
 }
 
 function playRound(playerSelection, computerSelection){
-    if (playerSelection == "rock"){
-        return computerSelection == "scissors" ? "You win!" : computerSelection == "paper" ? "You lose!" : "You tied!"
-    } else if (playerSelection == "paper"){
-        return computerSelection == "rock" ? "You win!" : computerSelection == "scissors" ? "You lose!" : "You tied!"
-    } else if (playerSelection == "scissors"){
-        return computerSelection == "paper" ? "You win!" : computerSelection == "rock" ? "You lose!" : "You tied!"
-    } else {
-        return "That is not an option, try again."
+    if (playerSelection == "rock" && computerSelection == "scissors" || playerSelection == "paper" && computerSelection == "rock" || playerSelection == "scissors" && computerSelection == "paper"){
+        return `Congratulations, you won the round! ${capitalizeFirstLetter(playerSelection)} beats ${computerSelection}!`
+    } else if (playerSelection == "rock" && computerSelection == "paper" || playerSelection == "paper" && computerSelection == "scissors" || playerSelection == "scissors" && computerSelection == "rock"){
+        return `Sorry, you lost the round! ${capitalizeFirstLetter(computerSelection)} beats ${playerSelection}!`
+    } else if (playerSelection == "rock" && computerSelection == "rock" || playerSelection == "paper" && computerSelection == "paper" || playerSelection == "scissors" && computerSelection == "scissors"){
+        return "Try again, you both chose " + playerSelection
     }
 }
 
-let playerSelection = window.prompt("Rock, paper, or scissors?").toLowerCase();
+let playerSelection = "rock";
 let computerSelection = getComputerChoice();
 console.log(playRound(playerSelection, computerSelection));
+
+console.log(capitalizeFirstLetter(playerSelection));
