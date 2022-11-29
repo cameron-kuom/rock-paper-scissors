@@ -16,6 +16,8 @@ function playRound(playerSelection, computerSelection){
         return "Sorry, you lost the round!"
     } else if (playerSelection == "rock" && computerSelection == "rock" || playerSelection == "paper" && computerSelection == "paper" || playerSelection == "scissors" && computerSelection == "scissors"){
         return "Try again, you both chose " + playerSelection
+    } else {
+        return "This is not an option, try again"
     }
 }
 
@@ -26,7 +28,8 @@ function game(){
     console.log("Welcome to the game!");
     let playerScore = 0;
     let computerScore = 0;
-    for (i = 0; i < 5; i++){
+    while (playerScore < 3){
+        if (computerScore == 3) break;
         playerSelection = window.prompt("Rock, paper, or scissors?").toLowerCase();
         getComputerChoice();
         computerSelection = getComputerChoice();
@@ -38,7 +41,8 @@ function game(){
         } else if (playRound(playerSelection, computerSelection) == "Sorry, you lost the round!"){
             computerScore++
         }
-        console.log("(------------)")
+        console.log(`Computer: ${computerScore}, You: ${playerScore}`)
+        console.log("(---------------------)")
     }
     if (playerScore > computerScore){
         console.log("Congratulations! You've beaten the computer!")
@@ -50,4 +54,3 @@ function game(){
 }
 
 game();
-
