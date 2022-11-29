@@ -1,9 +1,3 @@
-function capitalizeFirstLetter(string){
-    string = string.charAt(0).toUpperCase() + string.slice(1)
-    return string
-}
-
-
 function getComputerChoice(){
     let randomResult = Math.ceil(Math.random()*9)
     if (randomResult <= 3){
@@ -25,7 +19,7 @@ function playRound(playerSelection, computerSelection){
     }
 }
 
-let playerSelection = "rock";
+let playerSelection;
 let computerSelection;
 
 function game(){
@@ -33,6 +27,7 @@ function game(){
     let playerScore = 0;
     let computerScore = 0;
     for (i = 0; i < 5; i++){
+        playerSelection = window.prompt("Rock, paper, or scissors?").toLowerCase();
         getComputerChoice();
         computerSelection = getComputerChoice();
         console.log(`The computer chose ${computerSelection}`);
