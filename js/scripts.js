@@ -31,33 +31,37 @@ function playRound(playerSelection, computerSelection){
     }
 }
 
+
 function game(){
     console.log("Welcome to the game!");
-    let playerScore = 0;
-    let computerScore = 0;
-    while (playerScore < 3){
-        if (computerScore == 3) break;
-        playerSelection = window.prompt("Rock, paper, or scissors?").toLowerCase();
+    // let playerScore = 0;
+    // let computerScore = 0;
+
+
+    const buttons = document.querySelectorAll("button");
+    buttons.forEach(button => button.addEventListener("click", () => {
+        playerSelection = button.textContent
         getComputerChoice();
         computerSelection = getComputerChoice();
         console.log(`The computer chose ${computerSelection}`);
         console.log(`You chose ${playerSelection}`);
         console.log(playRound(playerSelection, computerSelection));
-        if (playRound(playerSelection, computerSelection) == "Congratulations, you won the round!"){
-            playerScore++
-        } else if (playRound(playerSelection, computerSelection) == "Sorry, you lost the round!"){
-            computerScore++
+        if (playRound(playerSelection, computerSelection) == roundMessage[0]){
+            // playerScore++
+        } else if (playRound(playerSelection, computerSelection) == roundMessage[1]){
+            // computerScore++
         }
-        console.log(`Computer: ${computerScore}, You: ${playerScore}`)
+        // console.log(`Computer: ${computerScore}, You: ${playerScore}`)
         console.log("(---------------------)")
-    }
-    if (playerScore > computerScore){
-        console.log("Congratulations! You've beaten the computer!")
-    } else if (computerScore > playerScore){
-        console.log("Sorry! The computer has won the game!")
-    } else {
-        console.log("Game over! We have a tie!")
-    }
-}
+    }));
+};
+    
+    // if (playerScore > computerScore){
+    //     console.log("Congratulations! You've beaten the computer!")
+    // } else if (computerScore > playerScore){
+    //     console.log("Sorry! The computer has won the game!")
+    // } else {
+    //     console.log("Game over! We have a tie!")
+    // }
 
 game();
