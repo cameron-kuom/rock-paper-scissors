@@ -1,3 +1,13 @@
+let playerSelection;
+let computerSelection;
+
+const roundMessage = [
+    "Congratulations, you won the round!",
+    "Sorry, you lost the round!",
+    "Try again, you both chose ",
+    "This is not an option, try again."
+];
+
 function getComputerChoice(){
     let randomResult = Math.ceil(Math.random()*9)
     if (randomResult <= 3){
@@ -11,18 +21,15 @@ function getComputerChoice(){
 
 function playRound(playerSelection, computerSelection){
     if (playerSelection == "rock" && computerSelection == "scissors" || playerSelection == "paper" && computerSelection == "rock" || playerSelection == "scissors" && computerSelection == "paper"){
-        return "Congratulations, you won the round!"
+        return roundMessage[0];
     } else if (playerSelection == "rock" && computerSelection == "paper" || playerSelection == "paper" && computerSelection == "scissors" || playerSelection == "scissors" && computerSelection == "rock"){
-        return "Sorry, you lost the round!"
-    } else if (playerSelection == "rock" && computerSelection == "rock" || playerSelection == "paper" && computerSelection == "paper" || playerSelection == "scissors" && computerSelection == "scissors"){
-        return "Try again, you both chose " + playerSelection
+        return roundMessage[1];
+    } else if (playerSelection == computerSelection){
+        return roundMessage[2] + playerSelection + ".";
     } else {
-        return "This is not an option, try again"
+        return roundMessage[3];
     }
 }
-
-let playerSelection;
-let computerSelection;
 
 function game(){
     console.log("Welcome to the game!");
