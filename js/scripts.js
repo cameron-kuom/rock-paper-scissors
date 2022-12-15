@@ -1,5 +1,6 @@
 let playerSelection;
 let computerSelection;
+let roundWinner;
 
 const roundMessage = [
     "Congratulations, you won the round!",
@@ -11,18 +12,18 @@ const roundMessage = [
 function getComputerChoice(){
     let randomResult = Math.ceil(Math.random()*9)
     if (randomResult <= 3){
-        return "rock";
+        return "Rock";
     } else if (randomResult <= 6){
-        return "paper";
+        return "Paper";
     } else {
-        return "scissors";
+        return "Scissors";
     }
 }
 
 function playRound(playerSelection, computerSelection){
-    if (playerSelection == "rock" && computerSelection == "scissors" || playerSelection == "paper" && computerSelection == "rock" || playerSelection == "scissors" && computerSelection == "paper"){
+    if (playerSelection == "Rock" && computerSelection == "Scissors" || playerSelection == "Paper" && computerSelection == "Rock" || playerSelection == "Scissors" && computerSelection == "Paper"){
         return roundMessage[0];
-    } else if (playerSelection == "rock" && computerSelection == "paper" || playerSelection == "paper" && computerSelection == "scissors" || playerSelection == "scissors" && computerSelection == "rock"){
+    } else if (playerSelection == "Rock" && computerSelection == "Paper" || playerSelection == "Paper" && computerSelection == "Scissors" || playerSelection == "Scissors" && computerSelection == "Rock"){
         return roundMessage[1];
     } else if (playerSelection == computerSelection){
         return roundMessage[2] + playerSelection + ".";
@@ -33,7 +34,6 @@ function playRound(playerSelection, computerSelection){
 
 
 function game(){
-    console.log("Welcome to the game!");
     // let playerScore = 0;
     // let computerScore = 0;
 
@@ -43,16 +43,25 @@ function game(){
         playerSelection = button.textContent
         getComputerChoice();
         computerSelection = getComputerChoice();
-        console.log(`The computer chose ${computerSelection}`);
-        console.log(`You chose ${playerSelection}`);
-        console.log(playRound(playerSelection, computerSelection));
+        playRound(playerSelection, computerSelection);
+        roundWinner = playRound(playerSelection, computerSelection)
+
+        let player = document.querySelector("#player");
+        let computer = document.querySelector("#computer");
+        let winner = document.querySelector("#winner");
+        player.textContent = `Player: ${playerSelection}`;
+        computer.textContent = `Computer: ${computerSelection}`;
+        winner.textContent = roundWinner;
+
+
+       
+        
         if (playRound(playerSelection, computerSelection) == roundMessage[0]){
             // playerScore++
         } else if (playRound(playerSelection, computerSelection) == roundMessage[1]){
             // computerScore++
         }
-        // console.log(`Computer: ${computerScore}, You: ${playerScore}`)
-        console.log("(---------------------)")
+        // console.log(`Computer: ${computerScore}, You: ${playerScore}`
     }));
 };
     
