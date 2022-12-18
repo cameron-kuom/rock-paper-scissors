@@ -1,16 +1,40 @@
 body {
+    background-color: darkcyan;
     display: flex;
+    justify-content: center;
     align-items: center;
+    height: 100vh;
+}
+
+.main-container{
+    width: 625px;
+    height: 625px;
+    background-color: white;
+    display: flex;
     flex-direction: column;
-    background-color: darkgray;
-    color: floralwhite;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+/* .welcome-message {
+    font-size: 40px;
+} */
+
+.btn-container{
+    display: flex;
+    gap: 10px;
 }
 
 #btn {
-    padding: 10px 25px;
+    width: 125px;
+    font-size: large;
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 10px 15px;
 }
 
 .scoreTracker {
     display: flex;
-    gap: 50px
+    gap: 50px;
 }
