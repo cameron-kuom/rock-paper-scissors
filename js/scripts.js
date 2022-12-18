@@ -1,6 +1,6 @@
 let playerSelection;
 let computerSelection;
-let roundWinner;
+const buttons = document.querySelectorAll("button");
 
 const roundMessage = [
     "Congratulations, you won the round!",
@@ -34,43 +34,43 @@ function playRound(playerSelection, computerSelection){
 
 
 function game(){
-    // let playerScore = 0;
-    // let computerScore = 0;
+    let playerScore = 0;
+    let computerScore = 0;
+    let player = document.querySelector("#player");
+    let computer = document.querySelector("#computer");
+    let winner = document.querySelector("#winner");
 
-
-    const buttons = document.querySelectorAll("button");
-    buttons.forEach(button => button.addEventListener("click", () => {
-        playerSelection = button.textContent
-        getComputerChoice();
-        computerSelection = getComputerChoice();
-        playRound(playerSelection, computerSelection);
-        roundWinner = playRound(playerSelection, computerSelection)
-
-        let player = document.querySelector("#player");
-        let computer = document.querySelector("#computer");
-        let winner = document.querySelector("#winner");
-        player.textContent = `Player: ${playerSelection}`;
-        computer.textContent = `Computer: ${computerSelection}`;
-        winner.textContent = roundWinner;
-
-
-       
+    for (let i = 0; i <= 5; i++){
+        playerSelection = buttons.forEach(button => button.addEventListener("click", () => {
         
-        if (playRound(playerSelection, computerSelection) == roundMessage[0]){
-            // playerScore++
-        } else if (playRound(playerSelection, computerSelection) == roundMessage[1]){
-            // computerScore++
-        }
-        // console.log(`Computer: ${computerScore}, You: ${playerScore}`
-    }));
+        
+            getComputerChoice();
+            computerSelection = getComputerChoice();
+            playRound(playerSelection, computerSelection);
+            
+            player.textContent = `Player: ${playerSelection}`;
+            computer.textContent = `Computer: ${computerSelection}`;
+            winner.textContent = playRound(playerSelection, computerSelection)
+            
+            if (playRound(playerSelection, computerSelection) == roundMessage[0]){
+                playerScore++
+            } else if (playRound(playerSelection, computerSelection) == roundMessage[1]){
+                computerScore++
+            }
+        }));
+    };
+
+    if (playerScore > computerScore){
+        console.log("Congratulations! You've beaten the computer!")
+    } else if (computerScore > playerScore){
+        console.log("Sorry! The computer has won the game!")
+    } else {
+        console.log("Game over! We have a tie!")
+    }
+
 };
     
-    // if (playerScore > computerScore){
-    //     console.log("Congratulations! You've beaten the computer!")
-    // } else if (computerScore > playerScore){
-    //     console.log("Sorry! The computer has won the game!")
-    // } else {
-    //     console.log("Game over! We have a tie!")
-    // }
+    
+    
 
 game();
