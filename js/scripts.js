@@ -1,7 +1,9 @@
 const btnContainer = document.querySelector(".btn-container");
 const buttons = document.querySelectorAll("#btn");
-const roundResultContainer = document.querySelector(".roundResult-container");
-const roundResult = document.createElement("h2");
+const resultContainer = document.querySelector(".result-container");
+const roundResult = document.querySelector(".roundResult");
+const endingContainer = document.querySelector(".ending-container");
+const endingMessage = document.createElement("h2");
 const pScore = document.querySelector("#pScore")
 const cScore = document.querySelector("#cScore");
 let playerSelection;
@@ -36,11 +38,23 @@ function playRound(playerSelection, computerSelection){
     }
 }
 
+function endGame(){
+    if (playerScore == 3){
+        roundResult.textContent = "CONGRATULATIONS! YOU'VE WON THE GAME!";
+        playerScore = 0;
+        computerScore = 0;
+    } else if (computerScore == 3){
+        roundResult.textContent = "BETTER LUCK NEXT TIME!";
+        playerScore = 0;
+        computerScore = 0;
+    }
+}
+
 buttons.forEach(button => button.addEventListener("click", () => {
     playerSelection = button.textContent.toLowerCase();
     computerSelection = getComputerChoice();
     roundResult.textContent = playRound(playerSelection, computerSelection);
-    roundResultContainer.appendChild(roundResult);
+    resultContainer.appendChild(roundResult);
 
     if (roundResult.textContent == `Winner! You chose ${playerSelection} and the computer chose ${computerSelection}!`){
         playerScore++
@@ -50,4 +64,6 @@ buttons.forEach(button => button.addEventListener("click", () => {
     
     pScore.textContent = `Player: ${playerScore}`;
     cScore.textContent = `Computer: ${computerScore}`;
+
+    endGame();
 }));

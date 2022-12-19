@@ -1,6 +1,7 @@
 body {
     background-color: darkcyan;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -16,10 +17,6 @@ body {
     align-items: center;
     border-radius: 10px;
 }
-
-/* .welcome-message {
-    font-size: 40px;
-} */
 
 .btn-container{
     display: flex;
@@ -37,4 +34,10 @@ body {
 .scoreTracker {
     display: flex;
     gap: 50px;
+}
+
+.roundResult {
+    color: yellow;
+    font-weight: bold;
+    font-size: 30px;
 }
