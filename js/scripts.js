@@ -58,12 +58,8 @@ function endGame(){
     }
 }
 
-function btnTransitionEnd(){
-    buttons.forEach(button => button.classList.remove("btn-transition"));
-}
-
 function playGame(e){
-    btnTransitionEnd();
+    buttons.forEach(button => button.classList.remove("btn-transition"));
     roundResult.classList.remove("font-change");
     e.target.classList.add("btn-transition");
     playerSelection = e.target.textContent.toLowerCase();
@@ -80,4 +76,3 @@ function playGame(e){
 }
 
 buttons.forEach(button => button.addEventListener("click", playGame))
-// buttons.forEach(button => button.addEventListener("click", btnTransitionEnd));
