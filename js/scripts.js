@@ -2,8 +2,6 @@ const btnContainer = document.querySelector(".btn-container");
 const buttons = document.querySelectorAll("#btn");
 const resultContainer = document.querySelector(".result-container");
 const roundResult = document.querySelector(".roundResult");
-const endingContainer = document.querySelector(".ending-container");
-const endingMessage = document.createElement("h2");
 const pScore = document.querySelector("#pScore")
 const cScore = document.querySelector("#cScore");
 let playerSelection;
@@ -38,13 +36,21 @@ function playRound(playerSelection, computerSelection){
     }
 }
 
+function scoreTracker(){
+    if (roundResult.textContent == `Winner! You chose ${playerSelection} and the computer chose ${computerSelection}!`){
+        playerScore++
+    } else if (roundResult.textContent == `Whoops! The computer chose ${computerSelection} and you chose ${playerSelection}.`){
+        computerScore++
+    }
+}
+
 function endGame(){
     if (playerScore == 3){
         roundResult.textContent = "CONGRATULATIONS! YOU'VE WON THE GAME!";
         playerScore = 0;
         computerScore = 0;
     } else if (computerScore == 3){
-        roundResult.textContent = "BETTER LUCK NEXT TIME!";
+        roundResult.textContent = "SORRY! BETTER LUCK NEXT TIME!";
         playerScore = 0;
         computerScore = 0;
     }
@@ -56,11 +62,7 @@ buttons.forEach(button => button.addEventListener("click", () => {
     roundResult.textContent = playRound(playerSelection, computerSelection);
     resultContainer.appendChild(roundResult);
 
-    if (roundResult.textContent == `Winner! You chose ${playerSelection} and the computer chose ${computerSelection}!`){
-        playerScore++
-    } else if (roundResult.textContent == `Whoops! The computer chose ${computerSelection} and you chose ${playerSelection}.`){
-        computerScore++
-    }
+    scoreTracker();
     
     pScore.textContent = `Player: ${playerScore}`;
     cScore.textContent = `Computer: ${computerScore}`;
