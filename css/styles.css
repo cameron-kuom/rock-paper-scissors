@@ -23,12 +23,17 @@ body {
     gap: 10px;
 }
 
-#btn {
+.btn {
     width: 125px;
     font-size: large;
     font-weight: bold;
     border-radius: 8px;
     padding: 10px 15px;
+    background-color: darkcyan;
+    color: white;
+    border-color: black;
+    border-style: none;
+
 }
 
 .scoreTracker {
@@ -37,7 +42,16 @@ body {
 }
 
 .roundResult {
-    color: yellow;
+    color: white;
     font-weight: bold;
     font-size: 30px;
+}
+
+.font-change {
+    color: yellow;
+    font-size: 35px;
+}
+
+.btn-transition {
+    border-style: solid
 }

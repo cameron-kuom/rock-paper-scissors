@@ -1,5 +1,5 @@
 const btnContainer = document.querySelector(".btn-container");
-const buttons = document.querySelectorAll("#btn");
+const buttons = document.querySelectorAll(".btn");
 const resultContainer = document.querySelector(".result-container");
 const roundResult = document.querySelector(".roundResult");
 const pScore = document.querySelector("#pScore")
@@ -47,17 +47,26 @@ function scoreTracker(){
 function endGame(){
     if (playerScore == 3){
         roundResult.textContent = "CONGRATULATIONS! YOU'VE WON THE GAME!";
+        roundResult.classList.add("font-change");
         playerScore = 0;
         computerScore = 0;
     } else if (computerScore == 3){
         roundResult.textContent = "SORRY! BETTER LUCK NEXT TIME!";
+        roundResult.classList.add("font-change");
         playerScore = 0;
         computerScore = 0;
     }
 }
 
-buttons.forEach(button => button.addEventListener("click", () => {
-    playerSelection = button.textContent.toLowerCase();
+function btnTransitionEnd(){
+    buttons.forEach(button => button.classList.remove("btn-transition"));
+}
+
+function playGame(e){
+    btnTransitionEnd();
+    roundResult.classList.remove("font-change");
+    e.target.classList.add("btn-transition");
+    playerSelection = e.target.textContent.toLowerCase();
     computerSelection = getComputerChoice();
     roundResult.textContent = playRound(playerSelection, computerSelection);
     resultContainer.appendChild(roundResult);
@@ -68,4 +77,7 @@ buttons.forEach(button => button.addEventListener("click", () => {
     cScore.textContent = `Computer: ${computerScore}`;
 
     endGame();
-}));
+}
+
+buttons.forEach(button => button.addEventListener("click", playGame))
+// buttons.forEach(button => button.addEventListener("click", btnTransitionEnd));
